@@ -26,6 +26,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   const items = useCartStore((state) => state?.items) || [];
+  const openCart = useCartStore((state) => state.openCart);
   const totalItems = Array.isArray(items)
     ? items.reduce((total, item) => total + (item?.quantity || 0), 0)
     : 0;
@@ -122,10 +123,10 @@ export default function Navbar() {
             <ThemeToggle />
 
             {/* Cart Drawer Trigger */}
-            <Link
-              href="/store"
-              className="relative border border-surface-variant p-2.5 hover:border-primary transition-colors duration-300 flex items-center gap-2"
-              aria-label="View Store"
+            <button
+              onClick={openCart}
+              className="relative border border-surface-variant p-2.5 hover:border-primary transition-colors duration-300 flex items-center gap-2 cursor-pointer"
+              aria-label="Open Cart Drawer"
             >
               <ShoppingBag className="w-5 h-5 text-primary" />
               {totalItems > 0 && (
@@ -133,17 +134,17 @@ export default function Navbar() {
                   ({totalItems})
                 </span>
               )}
-            </Link>
+            </button>
           </div>
 
           {/* Mobile Menu & Cart Controls */}
           <div className="flex lg:hidden items-center gap-3">
             <ThemeToggle />
 
-            <Link
-              href="/store"
-              className="relative border border-surface-variant p-2 hover:border-primary transition-colors"
-              aria-label="View Store"
+            <button
+              onClick={openCart}
+              className="relative border border-surface-variant p-2 hover:border-primary transition-colors cursor-pointer"
+              aria-label="Open Cart Drawer"
             >
               <ShoppingBag className="w-5 h-5 text-primary" />
               {totalItems > 0 && (
@@ -151,7 +152,7 @@ export default function Navbar() {
                   {totalItems}
                 </span>
               )}
-            </Link>
+            </button>
 
             <button
               onClick={() => setIsOpen(!isOpen)}
