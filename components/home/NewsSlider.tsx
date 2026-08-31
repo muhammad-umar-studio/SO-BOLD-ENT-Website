@@ -58,7 +58,7 @@ export default function NewsSlider() {
   };
 
   return (
-    <section className="py-section-gap px-margin-mobile md:px-margin-desktop bg-onyx-black border-t border-surface-variant">
+    <section className="py-section-gap px-margin-mobile md:px-margin-desktop border-t border-surface-variant">
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-surface-variant gap-4">
         <div>
@@ -106,7 +106,7 @@ export default function NewsSlider() {
             {/* Left Content Column */}
             <div className="md:col-span-8 space-y-4">
               <div className="flex flex-wrap items-center gap-3">
-                <span className="font-display text-primary text-sm font-bold bg-onyx-black/80 px-3 py-1 border border-surface-variant">
+                <span className="font-display text-primary text-sm font-bold bg-surface-container px-3.5 py-1 border border-surface-variant">
                   #{currentItem.number || String(currentIndex + 1).padStart(2, '0')}
                 </span>
                 <span className="font-body text-xs text-primary font-semibold uppercase tracking-wider bg-primary/20 px-3 py-1 border border-primary/40">
@@ -131,7 +131,7 @@ export default function NewsSlider() {
                     Read Full News Dispatch
                   </Button>
                 </Link>
-                <span className="font-body text-xs text-silver-leaf/60 uppercase font-semibold">
+                <span className="font-body text-xs text-silver-leaf uppercase font-semibold">
                   Source: {currentItem.author || 'SOBOLDENTS EDITORIAL'}
                 </span>
               </div>
@@ -139,13 +139,13 @@ export default function NewsSlider() {
 
             {/* Right Badge / Banner Graphic */}
             <div className="md:col-span-4 hidden md:flex flex-col items-center justify-center p-6 border-l border-surface-variant/40 text-center">
-              <div className="w-16 h-16 rounded-full bg-onyx-black border border-primary/40 flex items-center justify-center mb-4">
+              <div className="w-16 h-16 rounded-full bg-surface-container border border-primary/40 flex items-center justify-center mb-4">
                 <Award className="w-8 h-8 text-primary" />
               </div>
               <span className="font-display text-headline-sm text-primary uppercase tracking-widest mb-1">
                 SOBOLDENTS
               </span>
-              <span className="font-body text-xs text-silver-leaf/70 uppercase tracking-widest font-semibold">
+              <span className="font-body text-xs text-silver-leaf uppercase tracking-widest font-semibold">
                 VERIFIED MEDIA DESK
               </span>
             </div>
