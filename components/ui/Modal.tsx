@@ -40,30 +40,30 @@ export default function Modal({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-onyx-black/90 backdrop-blur-md"
+            className="absolute inset-0 bg-black/70 backdrop-blur-md"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="relative z-10 w-full max-w-4xl bg-surface border border-surface-variant p-6 md:p-8 shadow-2xl overflow-hidden"
+            className="relative z-10 w-full max-w-4xl bg-surface-container-low border border-surface-variant p-6 md:p-10 shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
           >
-            <div className="flex items-center justify-between border-b border-surface-variant pb-4 mb-6">
+            <div className="flex items-center justify-between border-b border-surface-variant pb-4 mb-6 sticky top-0 bg-surface-container-low z-20">
               {title && (
-                <h3 className="font-display text-headline-md uppercase text-primary tracking-tight">
+                <h3 className="font-display text-headline-md uppercase text-primary tracking-tight pr-4">
                   {title}
                 </h3>
               )}
               <button
                 onClick={onClose}
-                className="p-2 text-silver-leaf hover:text-primary transition-colors border border-transparent hover:border-surface-variant ml-auto"
+                className="p-2 text-silver-leaf hover:text-primary transition-colors border border-surface-variant hover:border-primary shrink-0 ml-auto"
                 aria-label="Close modal"
               >
                 <X className="w-6 h-6" />
               </button>
             </div>
-            <div className="w-full">{children}</div>
+            <div className="w-full text-primary">{children}</div>
           </motion.div>
         </div>
       )}

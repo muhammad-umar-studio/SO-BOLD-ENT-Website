@@ -24,7 +24,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="w-full relative pt-32 pb-section-gap min-h-screen dark-overlay-card">
+    <div className="w-full relative pt-32 pb-section-gap min-h-screen">
       {/* Background Atmosphere */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
@@ -32,9 +32,9 @@ export default function ContactPage() {
           alt="Contact Background"
           fill
           priority
-          className="object-cover opacity-25 grayscale mix-blend-luminosity"
+          className="object-cover opacity-20 grayscale mix-blend-luminosity"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/60" />
       </div>
 
       {/* Main Container */}
@@ -42,7 +42,7 @@ export default function ContactPage() {
         {/* Left Column */}
         <div className="md:col-span-5 flex flex-col justify-center mb-12 md:mb-0 pt-8 md:pt-0">
           <FadeIn direction="down">
-            <span className="font-body text-label-caps text-silver-leaf uppercase tracking-[0.3em] block mb-4">
+            <span className="font-body text-label-caps text-silver-leaf uppercase tracking-[0.3em] block mb-4 font-semibold">
               Consultation &amp; Booking
             </span>
             <h1 className="font-display text-display-xl-mobile md:text-display-xl text-primary uppercase leading-[0.85] tracking-tighter mb-6">
@@ -67,7 +67,7 @@ export default function ContactPage() {
         {/* Right Form Column */}
         <div className="md:col-span-7 flex items-center">
           <FadeIn direction="up" fullWidth>
-            <div className="w-full bg-deep-slate/90 backdrop-blur-md p-8 md:p-12 border border-surface-variant shadow-2xl dark-overlay-card">
+            <div className="w-full bg-surface-container-low backdrop-blur-md p-8 md:p-12 border border-surface-variant shadow-2xl">
               {formState.success ? (
                 <div className="py-12 flex flex-col items-center text-center space-y-6">
                   <CheckCircle2 className="w-16 h-16 text-primary animate-bounce" />
