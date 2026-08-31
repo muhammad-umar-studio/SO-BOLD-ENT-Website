@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ArrowRight, ExternalLink } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import Button from '@/components/ui/Button';
 
 interface SlideProject {
@@ -133,7 +133,7 @@ export default function HeroSlider() {
   };
 
   return (
-    <section className="relative w-full h-[85vh] sm:h-[90vh] min-h-[650px] bg-black text-white overflow-hidden dark-overlay-card">
+    <section className="relative w-full h-[85vh] sm:h-[92vh] min-h-[650px] bg-black text-white overflow-hidden dark-overlay-card border-b border-surface-variant">
       <AnimatePresence mode="wait" custom={direction}>
         <motion.div
           key={currentSlide.id}
@@ -162,43 +162,54 @@ export default function HeroSlider() {
 
               {/* Foreground Typography Content */}
               <div className="absolute inset-0 p-8 sm:p-14 md:p-20 flex flex-col justify-between z-10 max-w-[1440px] mx-auto left-0 right-0">
-                {/* Header Tag */}
+                {/* Top Category Badge */}
                 <div className="flex justify-between items-start pt-16 sm:pt-20">
                   <div className="flex items-center gap-3">
-                    <span className="font-body text-label-caps text-white/90 uppercase tracking-[0.25em] bg-black/80 px-3.5 py-1.5 border border-white/20 backdrop-blur-md font-bold">
+                    <span className="font-body text-label-caps text-white/90 uppercase tracking-[0.25em] bg-black/80 px-4 py-2 border border-white/20 backdrop-blur-md font-bold shadow-lg">
                       {currentSlide.category}
                     </span>
-                    <span className="font-body text-xs text-white/70 uppercase tracking-widest hidden sm:inline-block">
-                      Featured Release #{currentIndex + 1}
+                    <span className="font-body text-xs text-white/70 uppercase tracking-widest hidden sm:inline-block font-semibold">
+                      Featured Release #{String(currentIndex + 1).padStart(2, '0')} / {String(HERO_PROJECT_SLIDES.length).padStart(2, '0')}
                     </span>
-                  </div>
-
-                  <div className="w-11 h-11 border border-white/30 bg-black/70 backdrop-blur-md flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
-                    <ExternalLink className="w-5 h-5 text-white group-hover:text-black transition-colors" />
                   </div>
                 </div>
 
                 {/* Bottom Main Title & Call to Action */}
-                <div className="max-w-3xl space-y-4 pb-12 sm:pb-16">
-                  <h2 className="font-display text-[42px] sm:text-[72px] md:text-[96px] text-white uppercase leading-[0.88] tracking-tighter group-hover:translate-x-2 transition-transform duration-500">
+                <div className="max-w-4xl space-y-4 pb-12 sm:pb-16">
+                  <motion.h2
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="font-display text-[42px] sm:text-[72px] md:text-[96px] text-white uppercase leading-[0.88] tracking-tighter group-hover:translate-x-2 transition-transform duration-500"
+                  >
                     {currentSlide.title}
-                  </h2>
+                  </motion.h2>
 
-                  <p className="font-body text-body-md sm:text-body-lg text-white/90 uppercase tracking-wider font-semibold max-w-2xl">
+                  <motion.p
+                    initial={{ y: 15, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="font-body text-body-md sm:text-body-lg text-white/90 uppercase tracking-wider font-semibold max-w-2xl"
+                  >
                     {currentSlide.subtitle}
-                  </p>
+                  </motion.p>
 
                   {currentSlide.quote && (
-                    <p className="font-body text-body-md text-white/70 italic hidden md:block max-w-xl">
+                    <motion.p
+                      initial={{ y: 15, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                      className="font-body text-body-md text-white/70 italic hidden md:block max-w-xl"
+                    >
                       "{currentSlide.quote}"
-                    </p>
+                    </motion.p>
                   )}
 
                   <div className="pt-4 flex items-center gap-4">
                     <Button
                       variant="primary"
                       icon={<ArrowRight className="w-4 h-4" />}
-                      className="bg-white text-black hover:bg-white/90 border-white"
+                      className="bg-white text-black hover:bg-white/90 border-white font-bold"
                     >
                       {currentSlide.buttonLabel}
                     </Button>
@@ -214,7 +225,7 @@ export default function HeroSlider() {
       <button
         onClick={handlePrev}
         aria-label="Previous Project"
-        className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 sm:w-16 sm:h-16 border border-white/30 bg-black/50 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-black hover:border-white transition-all cursor-pointer"
+        className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 sm:w-16 sm:h-16 border border-white/30 bg-black/60 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-black hover:scale-110 transition-all cursor-pointer shadow-2xl"
       >
         <ChevronLeft className="w-8 h-8" />
       </button>
@@ -222,13 +233,13 @@ export default function HeroSlider() {
       <button
         onClick={handleNext}
         aria-label="Next Project"
-        className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 sm:w-16 sm:h-16 border border-white/30 bg-black/50 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-black hover:border-white transition-all cursor-pointer"
+        className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 sm:w-16 sm:h-16 border border-white/30 bg-black/60 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-black hover:scale-110 transition-all cursor-pointer shadow-2xl"
       >
         <ChevronRight className="w-8 h-8" />
       </button>
 
       {/* Sony Music-Style Bottom Pagination Indicators */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-3 bg-black/60 backdrop-blur-md px-4 py-2 border border-white/20 rounded-full">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-3 bg-black/70 backdrop-blur-md px-5 py-2.5 border border-white/20 rounded-full shadow-2xl">
         {HERO_PROJECT_SLIDES.map((slide, idx) => (
           <button
             key={slide.id}
@@ -238,7 +249,7 @@ export default function HeroSlider() {
             }}
             className={`transition-all duration-300 rounded-full cursor-pointer ${
               idx === currentIndex
-                ? 'w-8 h-2.5 bg-white'
+                ? 'w-9 h-2.5 bg-white'
                 : 'w-2.5 h-2.5 bg-white/40 hover:bg-white/70'
             }`}
             aria-label={`Go to project slide ${idx + 1}: ${slide.title}`}
