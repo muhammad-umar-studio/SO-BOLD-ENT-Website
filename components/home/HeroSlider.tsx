@@ -64,7 +64,7 @@ const HERO_PROJECT_SLIDES: SlideProject[] = [
     title: 'DOUGLAS LOFTON JR.',
     subtitle: 'CEO & FOUNDER — TALENT ARCHITECTURE & BUSINESS MANAGEMENT',
     category: 'SO BOLD ENT EXECUTIVE LEADERSHIP',
-    imageUrl: 'https://soboldents.com/wp-content/uploads/2024/06/DL-Billboard-article.png',
+    imageUrl: 'https://billboardworldmusic.com/wp-content/uploads/2025/08/Screenshot-2025-08-20-at-01.08.57.png',
     linkHref: '/clients/douglas-lofton-jr',
     buttonLabel: 'View Executive Spotlight & Press',
     quote: 'Architecting cultural dominance through vision, leverage, and execution.',
