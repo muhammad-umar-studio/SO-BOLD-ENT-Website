@@ -168,6 +168,7 @@ export const MOCK_MEDIA_ITEMS: MediaItem[] = [
 export const MOCK_DISPATCHES: Dispatch[] = [
   {
     id: 'd0',
+    slug: 'douglas-lofton-jr-billboard-spotlight',
     number: '00',
     title: 'DOUGLAS "II NICE" LOFTON JR. CEO OF SO BOLD ENT LAUNCHES BOLD NEW ERA WITH BILLBOARD MUSIC SPOTLIGHT',
     category: 'Industry Feature',
@@ -180,6 +181,7 @@ export const MOCK_DISPATCHES: Dispatch[] = [
   },
   {
     id: 'd1',
+    slug: 'aingee-constellations-ep-release',
     number: '01',
     title: 'AINGEE RELEASES HER SECOND STUDIO EP "CONSTELLATIONS"',
     category: 'Press Release',
@@ -192,6 +194,7 @@ export const MOCK_DISPATCHES: Dispatch[] = [
   },
   {
     id: 'd2',
+    slug: 'tre-sax-grammy-weekly-feature',
     number: '02',
     title: 'TRE’ SAX FEATURED ON GRAMMY WEEKLY SHOWCASE',
     category: 'Industry Feature',
@@ -204,6 +207,7 @@ export const MOCK_DISPATCHES: Dispatch[] = [
   },
   {
     id: 'd3',
+    slug: 'aingee-soundcloud-repostexchange-interview',
     number: '03',
     title: 'AINGEE FEATURED IN SOUNDCLOUD REPOSTEXCHANGE INTERVIEW',
     category: 'Interview',
@@ -216,6 +220,7 @@ export const MOCK_DISPATCHES: Dispatch[] = [
   },
   {
     id: 'd4',
+    slug: 'carolina-de-athey-besame-100k-views',
     number: '04',
     title: 'CAROLINA DE ATHEY "BESAME" CROSSES 100K YOUTUBE VIEWS',
     category: 'Milestone',

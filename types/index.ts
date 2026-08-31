@@ -62,6 +62,7 @@ export interface MediaItem {
 
 export interface Dispatch {
   id: string;
+  slug?: string;
   number: string;
   title: string;
   category: 'Press Release' | 'Tour Announcement' | 'Industry Insight' | 'Special Dispatch' | 'Industry Feature' | 'Interview' | 'Milestone';
@@ -88,8 +89,22 @@ export interface Inquiry {
   email: string;
   inquiryType: 'management' | 'production' | 'consultation' | 'other';
   message: string;
-  createdAt: string;
-  status: 'Pending' | 'Reviewed' | 'Archived';
+  date: string;
+  status: 'Unread' | 'In Progress' | 'Archived';
+}
+
+export interface Product {
+  id: string;
+  slug: string;
+  name: string;
+  category: 'Microphone' | 'Hardware' | 'Monitor' | 'Synthesizer' | 'Accessory' | 'Cable';
+  price: number;
+  originalPrice?: number;
+  imageUrl: string;
+  description: string;
+  specs: string[];
+  inStock: boolean;
+  featured?: boolean;
 }
 
 export interface CaseStudy {
