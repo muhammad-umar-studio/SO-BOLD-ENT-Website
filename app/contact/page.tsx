@@ -24,17 +24,17 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="w-full relative pt-32 pb-section-gap min-h-screen">
+    <div className="w-full relative pt-32 pb-section-gap min-h-screen dark-overlay-card">
       {/* Background Atmosphere */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqSTZ8i4C6AMJeN9Hi-S_DzBC7ZHOBU21DPJk4lYeDKvTIUzwOGfLQzdbHFIObfDK1EDl4T1sdsF-uP5fRpAgz0hlgU1URpavRxDHE99Ta_vvRCASTn2D-ZV_En9eaxQ7urfiRMHM6Hx-gidJSOHTPom_LzYsS31dEIc-f5gPpNwGp5Kb55zdRae4lGEZXpHOIDbGgAANIdyDx2-UdrnUBeNlqQm5TWUQsgpul9eACApANfdCzSyV5"
+          src="/images/products/studio_monitors.png"
           alt="Contact Background"
           fill
           priority
-          className="object-cover opacity-20 grayscale mix-blend-luminosity"
+          className="object-cover opacity-25 grayscale mix-blend-luminosity"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/70" />
       </div>
 
       {/* Main Container */}
@@ -52,7 +52,7 @@ export default function ContactPage() {
               Direct access to premier management and production consultation. Define your trajectory.
             </p>
             <div className="hidden md:block border-t border-surface-variant pt-6">
-              <p className="font-body text-label-caps text-primary uppercase tracking-[0.15em] mb-2 opacity-60">
+              <p className="font-body text-label-caps text-primary uppercase tracking-[0.15em] mb-2 font-bold">
                 Global Headquarters
               </p>
               <p className="font-body text-body-md text-silver-leaf">
@@ -67,7 +67,7 @@ export default function ContactPage() {
         {/* Right Form Column */}
         <div className="md:col-span-7 flex items-center">
           <FadeIn direction="up" fullWidth>
-            <div className="w-full bg-deep-slate/90 backdrop-blur-md p-8 md:p-12 border border-surface-variant shadow-2xl">
+            <div className="w-full bg-deep-slate/90 backdrop-blur-md p-8 md:p-12 border border-surface-variant shadow-2xl dark-overlay-card">
               {formState.success ? (
                 <div className="py-12 flex flex-col items-center text-center space-y-6">
                   <CheckCircle2 className="w-16 h-16 text-primary animate-bounce" />

@@ -1,9 +1,15 @@
 import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
+import { persist, createJSONStorage, StateStorage } from 'zustand/middleware';
 import { Product } from '@/types/store';
 import { Artist, MediaItem, Dispatch } from '@/types';
 import { MOCK_PRODUCTS } from '@/lib/data/mockProducts';
 import { MOCK_ARTISTS, MOCK_MEDIA_ITEMS, MOCK_DISPATCHES } from '@/lib/data/mockData';
+
+const noopStorage: StateStorage = {
+  getItem: () => null,
+  setItem: () => {},
+  removeItem: () => {},
+};
 
 interface CmsState {
   products: Product[];
@@ -102,7 +108,7 @@ export const useCmsStore = create<CmsState>()(
     }),
     {
       name: 'soboldents_cms_store',
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(() => (typeof window !== 'undefined' ? localStorage : noopStorage)),
     }
   )
 );

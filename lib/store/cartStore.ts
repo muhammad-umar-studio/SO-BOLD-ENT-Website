@@ -1,11 +1,17 @@
 import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
+import { persist, createJSONStorage, StateStorage } from 'zustand/middleware';
 import { Product, ProductVariant, CartItem } from '@/types/store';
+
+const noopStorage: StateStorage = {
+  getItem: () => null,
+  setItem: () => {},
+  removeItem: () => {},
+};
 
 interface CartState {
   items: CartItem[];
   isOpen: boolean;
-  
+
   // Drawer visibility controls
   openCart: () => void;
   closeCart: () => void;
@@ -43,12 +49,19 @@ export const useCartStore = create<CartState>()(
         );
 
         if (existingIndex > -1) {
-          const updatedItems = [...currentItems];
-          updatedItems[existingIndex].quantity += quantity;
-          set({ items: updatedItems, isOpen: true });
+          const updated = [...currentItems];
+          updated[existingIndex].quantity += quantity;
+          set({ items: updated, isOpen: true });
         } else {
           set({
-            items: [...currentItems, { product, selectedVariant, quantity }],
+            items: [
+              ...currentItems,
+              {
+                product,
+                selectedVariant,
+                quantity,
+              },
+            ],
             isOpen: true,
           });
         }
@@ -76,8 +89,11 @@ export const useCartStore = create<CartState>()(
         const targetVariantId = variantId || 'default';
         set((state) => ({
           items: state.items.map((item) => {
-            const itemVarId = item.selectedVariant ? item.selectedVariant.id : 'default';
-            if (item.product.id === productId && itemVarId === targetVariantId) {
+            const matchesProduct = item.product.id === productId;
+            const matchesVariant =
+              (item.selectedVariant ? item.selectedVariant.id : 'default') === targetVariantId;
+
+            if (matchesProduct && matchesVariant) {
               return { ...item, quantity };
             }
             return item;
@@ -101,8 +117,8 @@ export const useCartStore = create<CartState>()(
     }),
     {
       name: 'soboldents-cart-storage',
-      storage: createJSONStorage(() => localStorage),
-      partialize: (state) => ({ items: state.items }), // Only persist items, not drawer visibility
+      storage: createJSONStorage(() => (typeof window !== 'undefined' ? localStorage : noopStorage)),
+      partialize: (state) => ({ items: state.items }),
     }
   )
 );

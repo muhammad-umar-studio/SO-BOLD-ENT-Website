@@ -48,20 +48,20 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Outer Circle */}
+      {/* Outer Circle Ring */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-primary/40 pointer-events-none z-[9999] mix-blend-difference hidden md:block"
+        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-primary/50 pointer-events-none z-[9999] hidden md:block"
         animate={{
           x: mousePosition.x - 16,
           y: mousePosition.y - 16,
-          scale: isHovered ? 2 : 1,
-          borderColor: isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.4)',
+          scale: isHovered ? 1.6 : 1,
+          borderColor: isHovered ? 'rgba(99, 102, 241, 0.8)' : 'rgba(209, 209, 209, 0.4)',
         }}
         transition={{ type: 'spring', damping: 25, stiffness: 250, mass: 0.5 }}
       />
-      {/* Inner Dot */}
+      {/* Inner Precision Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-primary pointer-events-none z-[9999] mix-blend-difference hidden md:block"
+        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-primary pointer-events-none z-[9999] hidden md:block"
         animate={{
           x: mousePosition.x - 3,
           y: mousePosition.y - 3,

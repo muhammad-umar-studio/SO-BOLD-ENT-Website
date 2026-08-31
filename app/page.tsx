@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import Marquee from '@/components/motion/Marquee';
 import FadeIn from '@/components/motion/FadeIn';
+import NewsSlider from '@/components/home/NewsSlider';
 
 export default function HomePage() {
   const marqueeItems = [
@@ -23,11 +24,11 @@ export default function HomePage() {
         {/* Background Atmosphere Image */}
         <div className="absolute inset-0 z-0 bg-deep-slate">
           <Image
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_qg4-iyXO60RywER0D0LvbQzQ3AJl035CerBzY_6GO5_2ZrAz-k2J4lWzZv0MZq-8JPp3NLnlbnufOCxDD-IVJcR5JgBskb7ywJFrFOZkkVyW-hrQK5ljOZ-CRUsnCqabKifmVd4Ipr1wzkFAlgh6pJR_u_fHJ4rU_UMdvDvPh_GL-EjlBmlwaBZhgEJKNqRg_CPIZZ9KLLpROAUOSXd6MM5K3qI14bXOUgJmy-ZYKx_vdg8IzkmL"
-            alt="Artist in studio"
+            src="/images/products/c12_tube_mic.png"
+            alt="Studio Atmosphere"
             fill
             priority
-            className="object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-1000 ease-out mix-blend-luminosity scale-105"
+            className="object-cover opacity-40 grayscale hover:grayscale-0 transition-all duration-1000 ease-out mix-blend-luminosity scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/40 to-background" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-background/50 to-background" />
@@ -72,9 +73,9 @@ export default function HomePage() {
                   Explore Roster
                 </Button>
               </Link>
-              <Link href="/store" className="w-full sm:w-auto">
+              <Link href="/news" className="w-full sm:w-auto">
                 <Button variant="outline" className="w-full sm:w-auto justify-center">
-                  Studio Hardware Store
+                  Latest News &amp; Press
                 </Button>
               </Link>
             </div>
@@ -109,9 +110,9 @@ export default function HomePage() {
 
         {/* Dynamic Grid Teaser */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8">
-          <div className="md:col-span-8 relative aspect-[4/3] md:aspect-auto md:h-[600px] border border-surface-variant overflow-hidden group bg-surface-container-low">
+          <div className="md:col-span-8 relative aspect-[4/3] md:aspect-auto md:h-[600px] border border-surface-variant overflow-hidden group bg-surface-container-low dark-overlay-card">
             <Image
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPo0t5_qC0TqYl0b0c-MhK8_E30mP1N3Jk8pWw8zT6V-lY4H1M6pA7dC8vY4H1M6pA7dC8v"
+              src="/images/products/studio_monitors.png"
               alt="Featured Artist"
               fill
               className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
@@ -130,9 +131,9 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="md:col-span-4 relative aspect-square md:aspect-auto md:h-[600px] border border-surface-variant overflow-hidden group bg-surface-container-low">
+          <div className="md:col-span-4 relative aspect-square md:aspect-auto md:h-[600px] border border-surface-variant overflow-hidden group bg-surface-container-low dark-overlay-card">
             <Image
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtbjX8TYME_WglX8HxiuRtFZdNrMQVBFWsxQNrvMWJE2JP_PFiEtNtgMRAYO7gZcOaDboCmN02H6x8a-hnlwTHMvGcycW9un9uJK6UQ5V7PmDpsW5oJyoH1fGRL_wpWkap3zn9tgkTHRdpgvIGgVvLkfKexSQJSCLGVoQ_3Hi6lS31cvLVxgcTCbUVdbPJlqxZNtpKpgogYz2lvK7Se-4ujjet8JnF5Zt92j2Gp7O_jOyROiCYan98"
+              src="/images/products/analog_synth.png"
               alt="Featured Producer"
               fill
               className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
@@ -149,6 +150,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Animated News Carousel Slider */}
+      <NewsSlider />
     </div>
   );
 }

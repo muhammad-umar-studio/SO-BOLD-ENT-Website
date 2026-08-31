@@ -16,6 +16,7 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
 
   ::selection {
@@ -24,6 +25,173 @@
   }
 }
 
+/* ==========================================================================
+   Light Mode High-Contrast Design System
+   ========================================================================== */
+html.light {
+  color-scheme: light;
+}
+
+html.light body {
+  background-color: #f8f9fa;
+  color: #111315;
+}
+
+html.light .bg-background {
+  background-color: #f8f9fa !important;
+}
+
+html.light .bg-onyx-black {
+  background-color: #ffffff !important;
+}
+
+html.light .bg-deep-slate {
+  background-color: #e9ecef !important;
+}
+
+html.light .bg-surface-container-low {
+  background-color: #ffffff !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  border-color: #d1d5db !important;
+}
+
+html.light .bg-surface-container {
+  background-color: #f1f3f5 !important;
+}
+
+/* Base Text Colors for Standard Light Sections */
+html.light .text-primary {
+  color: #0f1013;
+}
+
+/* Muted Text Colors for Light Cards & Content */
+html.light .text-silver-leaf {
+  color: #2b2d31;
+}
+
+html.light .text-silver-leaf\/40,
+html.light .text-silver-leaf\/50,
+html.light .text-silver-leaf\/60,
+html.light .text-silver-leaf\/70,
+html.light .text-silver-leaf\/80,
+html.light .text-silver-leaf\/90 {
+  color: #3b3e45;
+}
+
+html.light .border-surface-variant {
+  border-color: #cfd3d8 !important;
+}
+
+html.light .text-stroke-white {
+  -webkit-text-stroke: 1.5px #0f1013;
+  color: transparent;
+}
+
+html.light .text-stroke-subtle {
+  -webkit-text-stroke: 1px #b0b5bc;
+  color: transparent;
+}
+
+/* Light mode header backdrop */
+html.light header {
+  background-color: rgba(248, 249, 250, 0.92) !important;
+  border-color: #cfd3d8 !important;
+}
+
+/* Buttons in Light Mode */
+html.light button.bg-primary,
+html.light a.bg-primary {
+  background-color: #0f1013 !important;
+  color: #ffffff !important;
+  border-color: #0f1013 !important;
+}
+
+html.light button.bg-primary:hover,
+html.light a.bg-primary:hover {
+  background-color: #2b2d31 !important;
+  color: #ffffff !important;
+}
+
+html.light button.border-surface-variant,
+html.light a.border-surface-variant {
+  border-color: #b0b5bc !important;
+  color: #0f1013 !important;
+}
+
+/* ==========================================================================
+   Hover State Contrast Rules:
+   If hover turns text white/primary in Light Mode, the container MUST turn BLACK!
+   ========================================================================== */
+html.light .hover\:bg-onyx-black:hover,
+html.light .hover\:bg-black:hover,
+html.light .group:hover.group-hover\:bg-onyx-black,
+html.light .group:hover.group-hover\:bg-black,
+html.light .group:hover .group-hover\:bg-onyx-black,
+html.light .group:hover .group-hover\:bg-black {
+  background-color: #0a0a0a !important;
+  color: #ffffff !important;
+}
+
+html.light .hover\:bg-onyx-black:hover *,
+html.light .hover\:bg-black:hover *,
+html.light .group:hover.group-hover\:bg-onyx-black *,
+html.light .group:hover.group-hover\:bg-black *,
+html.light .group:hover .group-hover\:bg-onyx-black *,
+html.light .group:hover .group-hover\:bg-black * {
+  color: #ffffff !important;
+}
+
+/* Standard light mode card hover when background stays light */
+html.light .group:hover .group-hover\:text-primary:not(.dark-overlay-card *),
+html.light .group:hover .group-hover\:text-white:not(.dark-overlay-card *) {
+  color: #0f1013;
+}
+
+/* ==========================================================================
+   Dark Overlay Cards (Roster Photos, Video Hero Banners)
+   Ensure white text is preserved on top of dark photo scrims in both modes!
+   ========================================================================== */
+.dark-overlay-card,
+.dark-overlay-card .text-primary,
+.dark-overlay-card .text-silver-leaf,
+.dark-overlay-card [class*="text-silver-leaf"],
+.dark-overlay-card h1,
+.dark-overlay-card h2,
+.dark-overlay-card h3,
+.dark-overlay-card p {
+  color: #ffffff !important;
+}
+
+html.light .dark-overlay-card,
+html.light .dark-overlay-card .text-primary,
+html.light .dark-overlay-card .text-silver-leaf,
+html.light .dark-overlay-card [class*="text-silver-leaf"],
+html.light .dark-overlay-card h1,
+html.light .dark-overlay-card h2,
+html.light .dark-overlay-card h3,
+html.light .dark-overlay-card p {
+  color: #ffffff !important;
+}
+
+html.light .dark-overlay-card span.bg-onyx-black\/80 {
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+html.light .dark-overlay-card span.bg-surface-container-low {
+  background-color: rgba(20, 20, 20, 0.85) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+html.light .dark-overlay-card strong {
+  color: #ffffff !important;
+}
+
+/* ==========================================================================
+   Utilities & Animations
+   ========================================================================== */
 @layer utilities {
   .text-stroke-white {
     -webkit-text-stroke: 1.5px #ffffff;
@@ -69,4 +237,12 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #ffffff;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #f8f9fa;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: #b0b5bc;
 }

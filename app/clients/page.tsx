@@ -90,7 +90,7 @@ export default function ClientsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.5, ease: [0.77, 0, 0.175, 1] }}
-                className={`relative border border-surface-variant bg-surface-container-low overflow-hidden group ${spanClass}`}
+                className={`relative border border-surface-variant bg-surface-container-low overflow-hidden group dark-overlay-card ${spanClass}`}
               >
                 <Link href={`/clients/${artist.slug}`} className="block w-full h-full relative">
                   {/* Background Image with Monochromatic Overlay */}
