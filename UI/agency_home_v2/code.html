@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AGENCY - Premier Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Hanken+Grotesk:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "deep-slate": "#121212",
+                        "inverse-surface": "#e5e2e1",
+                        "onyx-black": "#000000",
+                        "on-primary-fixed": "#1a1c1c",
+                        "on-surface": "#e5e2e1",
+                        "primary-fixed-dim": "#c6c6c7",
+                        "surface-bright": "#3a3939",
+                        "primary-container": "#e2e2e2",
+                        "outline-variant": "#444748",
+                        "on-error": "#690005",
+                        "surface": "#131313",
+                        "secondary-fixed": "#e3e2e2",
+                        "on-secondary-container": "#b8b8b8",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-surface-variant": "#c4c7c8",
+                        "secondary-container": "#484949",
+                        "surface-dim": "#131313",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-primary": "#2f3131",
+                        "on-tertiary-container": "#636565",
+                        "on-secondary": "#2f3131",
+                        "surface-container-highest": "#353534",
+                        "surface-variant": "#353534",
+                        "error-container": "#93000a",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "surface-container-high": "#2a2a2a",
+                        "inverse-on-surface": "#313030",
+                        "on-background": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-container": "#e2e2e2",
+                        "on-primary-container": "#636565",
+                        "on-secondary-fixed-variant": "#464747",
+                        "surface-container": "#201f1f",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "surface-tint": "#c6c6c7",
+                        "silver-leaf": "#D1D1D1",
+                        "primary": "#ffffff",
+                        "surface-container-low": "#1c1b1b",
+                        "tertiary": "#ffffff",
+                        "on-tertiary": "#2f3131",
+                        "primary-fixed": "#e2e2e2",
+                        "on-primary-fixed-variant": "#454747",
+                        "outline": "#8e9192",
+                        "background": "#131313",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "inverse-primary": "#5d5f5f",
+                        "secondary": "#c7c6c6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "section-gap": "160px",
+                        "unit": "8px",
+                        "margin-desktop": "80px",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Anton"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Anton"],
+                        "headline-md": ["Anton"],
+                        "display-xl-mobile": ["Anton"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["120px", { "lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "letterSpacing": "0.02em", "fontWeight": "400" }],
+                        "display-xl-mobile": ["64px", { "lineHeight": "60px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "700" }],
+                        "body-lg": ["20px", { "lineHeight": "32px", "fontWeight": "400" }],
+                        "hero-massive": ["180px", { "lineHeight": "150px", "letterSpacing": "-0.03em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            font-family: 'Hanken Grotesk', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .text-stroke-white {
+            -webkit-text-stroke: 1.5px theme('colors.primary');
+            color: transparent;
+        }
+        .text-stroke-subtle {
+            -webkit-text-stroke: 1px theme('colors.surface-variant');
+            color: transparent;
+        }
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: theme('colors.primary');
+            transform-origin: bottom right;
+            transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+        @keyframes scrollHint {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(10px); opacity: 0; }
+            51% { transform: translateY(-10px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .animate-scroll-hint {
+            animation: scrollHint 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-primary selection:text-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-transparent docked full-width top-0 z-50 mix-blend-difference flex justify-between items-center px-margin-mobile md:px-margin-desktop py-8 w-full fixed top-0 left-0">
+<a class="font-display-xl text-headline-md md:text-headline-lg font-bold text-primary uppercase tracking-tighter hover:scale-95 transition-transform" href="#">
+            AGENCY
+        </a>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-10 font-label-caps text-label-caps uppercase tracking-[0.2em]">
+<a class="text-primary nav-link relative active scale-100 active:scale-95 transition-transform" href="#">Home</a>
+<a class="text-silver-leaf hover:text-primary transition-colors duration-300 nav-link relative scale-100 active:scale-95 transition-transform" href="#">About</a>
+<a class="text-silver-leaf hover:text-primary transition-colors duration-300 nav-link relative scale-100 active:scale-95 transition-transform" href="#">Clients</a>
+<a class="text-silver-leaf hover:text-primary transition-colors duration-300 nav-link relative scale-100 active:scale-95 transition-transform" href="#">Channel</a>
+<a class="text-silver-leaf hover:text-primary transition-colors duration-300 nav-link relative scale-100 active:scale-95 transition-transform" href="#">Partners</a>
+<a class="text-silver-leaf hover:text-primary transition-colors duration-300 nav-link relative scale-100 active:scale-95 transition-transform" href="#">Contact</a>
+</nav>
+<!-- Mobile Nav Toggle -->
+<button class="md:hidden text-primary p-2">
+<span class="material-symbols-outlined text-3xl" data-icon="menu">menu</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative w-full h-screen min-h-[900px] flex items-center justify-center overflow-hidden">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0 bg-deep-slate">
+<img alt="Artist in studio" class="w-full h-full object-cover opacity-50 grayscale hover:grayscale-[50%] transition-all duration-1000 ease-out mix-blend-luminosity scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_qg4-iyXO60RywER0D0LvbQzQ3AJl035CerBzY_6GO5_2ZrAz-k2J4lWzZv0MZq-8JPp3NLnlbnufOCxDD-IVJcR5JgBskb7ywJFrFOZkkVyW-hrQK5ljOZ-CRUsnCqabKifmVd4Ipr1wzkFAlgh6pJR_u_fHJ4rU_UMdvDvPh_GL-EjlBmlwaBZhgEJKNqRg_CPIZZ9KLLpROAUOSXd6MM5K3qI14bXOUgJmy-ZYKx_vdg8IzkmL"/>
+<div class="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-background/90"></div>
+<div class="absolute inset-0 bg-radial-gradient from-transparent to-background/80"></div>
+</div>
+<!-- Large Background Typography -->
+<div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden">
+<h2 class="font-display-xl text-[20vw] text-stroke-subtle opacity-20 whitespace-nowrap -rotate-2 transform scale-150">PREMIER</h2>
+</div>
+<!-- Content -->
+<div class="relative z-10 w-full px-margin-mobile md:px-margin-desktop flex flex-col items-center text-center mt-20">
+<p class="font-label-caps text-[10px] md:text-label-caps text-silver-leaf mb-8 md:mb-12 tracking-[0.4em] uppercase border-b border-surface-variant pb-4 w-max">Global Talent &amp; Architecture</p>
+<h1 class="font-display-xl-mobile md:font-display-xl lg:text-hero-massive text-primary uppercase leading-[0.8] tracking-tighter mb-8 md:mb-12 flex flex-col items-center">
+<span class="block hover:scale-105 transition-transform duration-700 ease-out">Architects</span>
+<span class="block text-stroke-white text-transparent italic pr-8 md:pr-16 hover:scale-105 transition-transform duration-700 ease-out delay-100">Of Culture</span>
+</h1>
+<div class="flex flex-col md:flex-row items-center gap-6 mt-8 md:mt-16">
+<button class="bg-primary text-onyx-black font-label-caps text-label-caps uppercase px-12 py-5 hover:bg-onyx-black hover:text-primary transition-colors duration-300 ease-in-out active:scale-95 tracking-widest relative overflow-hidden group">
+<span class="relative z-10">Explore Roster</span>
+<div class="absolute inset-0 bg-onyx-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+</button>
+</div>
+</div>
+<!-- Scroll Hint -->
+<div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-silver-leaf opacity-60">
+<span class="font-label-caps text-[10px] tracking-[0.3em] uppercase">Scroll</span>
+<div class="w-[1px] h-12 bg-silver-leaf/30 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1/3 bg-primary animate-scroll-hint"></div>
+</div>
+</div>
+</section>
+<!-- Marquee Divider -->
+<section class="w-full bg-background border-b border-surface-variant py-6 overflow-hidden relative group cursor-default z-20">
+<div class="marquee-container font-headline-md text-headline-md text-surface-variant uppercase tracking-[0.1em] group-hover:text-primary transition-colors duration-700">
+<div class="marquee-content">
+                    LATEST RELEASES   —   GLOBAL TOURS   —   BRAND PARTNERSHIPS   —   EXCLUSIVE CONTENT   —   LATEST RELEASES   —   GLOBAL TOURS   —   BRAND PARTNERSHIPS   —   EXCLUSIVE CONTENT   —  
+                </div>
+</div>
+</section>
+<!-- Dynamic Asymmetrical Layout -->
+<section class="px-margin-mobile md:px-margin-desktop py-section-gap bg-background relative">
+<!-- Background Typography -->
+<div class="absolute top-20 right-0 z-0 pointer-events-none hidden md:block">
+<h2 class="font-display-xl text-[12vw] text-surface-container opacity-50 whitespace-nowrap writing-mode-vertical text-right rotate-90 transform origin-top-right">EST. 2024</h2>
+</div>
+<div class="relative z-10">
+<div class="mb-24 md:mb-40 flex flex-col md:flex-row justify-between items-end gap-12">
+<h2 class="font-display-xl text-headline-lg md:text-[100px] text-primary uppercase leading-[0.9] tracking-tighter">The<br/>Work</h2>
+<p class="font-body-lg text-body-lg text-silver-leaf max-w-md md:text-right border-l md:border-l-0 md:border-r border-primary/30 pl-6 md:pl-0 md:pr-6 py-2">
+                        We don't just manage careers; we construct legacies across music, film, and fashion. Forging the intersection of raw talent and cinematic scale.
+                    </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-y-16 md:gap-gutter items-center">
+<!-- Asymmetrical Item 1 -->
+<div class="md:col-span-7 relative group">
+<div class="relative overflow-hidden aspect-[4/3] bg-surface-container-low">
+<div class="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-out grayscale" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnWxuKUaqdnvYz0pybssKLlOQXNYuN1mz8cuxLZszBauZupp1kYQQ16Kb3lVxLsRmTU9xPpXUtmZ1dGYwg38N4Y8EPsD_WdDSLsBSOL31UTydSc63DWoJ-dl62G14dWkLEEfiR4ZcDFYwBzJ2E1n1e6kdmSudU-nsU0zm-zzRCikrOxX57pjZ3UBaAJR-jaSk-L-13toUEB3sVMGtmkbgbA0BZntDA_48KRzHaNHj-WY-Q3sGbx20x')"></div>
+</div>
+<div class="absolute -bottom-8 md:-bottom-16 -right-4 md:-right-12 z-20 bg-background p-6 md:p-8 border border-surface-variant max-w-[80%] md:max-w-md shadow-2xl">
+<span class="font-label-caps text-label-caps text-silver-leaf block mb-2 tracking-widest">01 — Global Routing</span>
+<h3 class="font-display-xl text-headline-md md:text-headline-lg text-primary uppercase leading-none mb-4">Touring</h3>
+<a class="inline-flex items-center gap-2 font-label-caps text-[10px] text-primary uppercase tracking-widest hover:gap-4 transition-all group-hover:text-silver-leaf" href="#">
+                                 Explore <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Asymmetrical Item 2 -->
+<div class="md:col-span-5 relative group md:mt-48">
+<div class="absolute -top-12 md:-top-24 -left-4 md:-left-16 z-20 mix-blend-difference pointer-events-none">
+<h3 class="font-display-xl text-headline-lg md:text-[120px] text-primary uppercase leading-[0.8] tracking-tighter opacity-80">PRO<br/>DUC<br/>TION</h3>
+</div>
+<div class="relative overflow-hidden aspect-square md:aspect-[3/4] bg-surface-container-low ml-8 md:ml-0">
+<div class="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-out grayscale" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDkFbaYCjBcTm0XJwwb9LhVwqO_Dg2kW9HJ_fWXdIsgYTCGkU3Hwd2e7aikTyBv7lfu13pYZX6dKHaiFk_9nB2tctQreoSYrxv_GACER6NOWOk2xEIyhVkIJuZyp8WrxrNo6jGTbCFZCQnoaFbAvLavT5fHqdHkCC5d-8vQfO5laE0WV03xPKQ0_LP5ejeBghIAZQJSfzYt-m-6x4HV7X_gUOSWMYEpSbRSWgHNtE49TZsvYMH-Xo6q')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent"></div>
+<div class="absolute bottom-8 left-8 right-8 z-20">
+<span class="font-label-caps text-label-caps text-silver-leaf block mb-2 tracking-widest">02 — Sonic Architecture</span>
+<a class="inline-flex items-center gap-2 font-label-caps text-[10px] text-primary uppercase tracking-widest hover:gap-4 transition-all" href="#">
+                                     Explore <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Project -->
+<section class="w-full py-section-gap px-margin-mobile md:px-margin-desktop bg-onyx-black relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-surface-variant to-transparent"></div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-5 flex flex-col order-2 md:order-1 mt-12 md:mt-0">
+<p class="font-label-caps text-[10px] text-silver-leaf mb-6 tracking-[0.3em] uppercase">Featured Case Study</p>
+<h2 class="font-display-xl text-headline-lg md:text-[80px] text-primary uppercase leading-[0.9] tracking-tighter mb-8">The<br/><span class="text-stroke-white text-transparent">Stadium</span><br/>Tour</h2>
+<p class="font-body-md text-silver-leaf max-w-sm mb-12">
+                        A brutalist reimagining of arena stages. 45 cities. 2 million attendees. Zero compromises on artistic vision.
+                    </p>
+<button class="w-max bg-transparent text-primary font-label-caps text-label-caps uppercase px-8 py-4 border border-surface-variant hover:border-primary transition-colors duration-300">
+                        View Project
+                    </button>
+</div>
+<div class="md:col-span-7 order-1 md:order-2 relative group overflow-hidden">
+<div class="aspect-[16/9] md:aspect-[4/5] bg-surface-container-low w-full relative">
+<div class="absolute inset-0 bg-cover bg-center opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-out grayscale" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnWxuKUaqdnvYz0pybssKLlOQXNYuN1mz8cuxLZszBauZupp1kYQQ16Kb3lVxLsRmTU9xPpXUtmZ1dGYwg38N4Y8EPsD_WdDSLsBSOL31UTydSc63DWoJ-dl62G14dWkLEEfiR4ZcDFYwBzJ2E1n1e6kdmSudU-nsU0zm-zzRCikrOxX57pjZ3UBaAJR-jaSk-L-13toUEB3sVMGtmkbgbA0BZntDA_48KRzHaNHj-WY-Q3sGbx20x')"></div> <!-- Reusing touring image as placeholder for featured project -->
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background w-full py-24 border-t-[0.5px] border-surface-variant/50 relative overflow-hidden flex flex-col items-center">
+<!-- Giant Logo Background in Footer -->
+<div class="absolute bottom-[-10%] left-1/2 transform -translate-x-1/2 w-full text-center pointer-events-none opacity-[0.03]">
+<span class="font-display-xl text-[25vw] leading-none text-primary uppercase whitespace-nowrap">AGENCY</span>
+</div>
+<div class="w-full px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter relative z-10 items-end">
+<div class="md:col-span-6 flex flex-col">
+<a class="font-display-xl text-headline-lg text-primary uppercase tracking-tighter mb-12 hover:opacity-80 transition-opacity w-max" href="#">AGENCY</a>
+<div class="flex gap-8 font-label-caps text-[10px] tracking-widest uppercase">
+<a class="text-silver-leaf hover:text-primary transition-colors relative after:content-[''] after:absolute after:w-full after:h-[1px] after:bg-primary after:bottom-[-4px] after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left" href="#">Privacy</a>
+<a class="text-silver-leaf hover:text-primary transition-colors relative after:content-[''] after:absolute after:w-full after:h-[1px] after:bg-primary after:bottom-[-4px] after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left" href="#">Terms</a>
+<a class="text-silver-leaf hover:text-primary transition-colors relative after:content-[''] after:absolute after:w-full after:h-[1px] after:bg-primary after:bottom-[-4px] after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left" href="#">Socials</a>
+</div>
+</div>
+<div class="md:col-span-6 flex flex-col items-start md:items-end mt-16 md:mt-0">
+<p class="font-body-md text-[14px] text-surface-variant mb-4 md:text-right max-w-[200px]">
+                    NYC — LA — LDN
+                </p>
+<p class="font-label-caps text-[10px] text-silver-leaf/50 tracking-[0.2em] uppercase">
+                    © 2024 PREMIER MANAGEMENT.<br/>ALL RIGHTS RESERVED.
+                </p>
+</div>
+</div>
+</footer>
+</body></html>
