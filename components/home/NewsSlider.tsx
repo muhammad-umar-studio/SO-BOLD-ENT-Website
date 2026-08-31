@@ -58,49 +58,40 @@ export default function NewsSlider() {
   };
 
   return (
-    <section className="py-section-gap px-margin-mobile md:px-margin-desktop bg-onyx-black border-y border-surface-variant relative overflow-hidden">
+    <section className="py-section-gap px-margin-mobile md:px-margin-desktop bg-onyx-black border-t border-surface-variant">
+      {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-surface-variant gap-4">
         <div>
-          <span className="font-body text-label-caps text-silver-leaf uppercase tracking-[0.3em] block mb-2 flex items-center gap-2">
+          <span className="font-body text-label-caps text-silver-leaf uppercase tracking-[0.2em] sm:tracking-[0.3em] block mb-2 flex items-center gap-2 font-bold">
             <Newspaper className="w-4 h-4 text-primary" />
-            Official Press &amp; Media Spotlight
+            Media &amp; Press Radar
           </span>
           <h2 className="font-display text-[32px] sm:text-headline-lg text-primary uppercase">
-            LATEST NEWS DISPATCHES
+            LATEST DISPATCHES
           </h2>
         </div>
 
-        {/* Carousel Navigation Arrows & Links */}
-        <div className="flex items-center gap-4">
-          <Link
-            href="/news"
-            className="font-body text-label-caps text-primary uppercase tracking-[0.2em] hover:gap-3 transition-all flex items-center gap-2 border-b border-primary pb-1 font-bold mr-4"
+        {/* Carousel Navigation Controls */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={handlePrev}
+            aria-label="Previous Dispatch"
+            className="p-3 border border-surface-variant hover:border-primary text-primary transition-colors bg-surface-container-low"
           >
-            <span>All Press Dispatches ({dispatches.length})</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-
-          <div className="flex items-center gap-2">
-            <button
-              onClick={handlePrev}
-              aria-label="Previous Slide"
-              className="p-3 border border-surface-variant bg-surface-container-low hover:border-primary text-silver-leaf hover:text-primary transition-colors"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={handleNext}
-              aria-label="Next Slide"
-              className="p-3 border border-surface-variant bg-surface-container-low hover:border-primary text-silver-leaf hover:text-primary transition-colors"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={handleNext}
+            aria-label="Next Dispatch"
+            className="p-3 border border-surface-variant hover:border-primary text-primary transition-colors bg-surface-container-low"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
       </div>
 
       {/* Main Slide Card Container */}
-      <div className="relative min-h-[420px] md:min-h-[380px] bg-surface-container-low border border-surface-variant p-8 md:p-12 overflow-hidden flex flex-col justify-between">
+      <div className="relative min-h-[420px] md:min-h-[380px] bg-surface-container-low border border-surface-variant p-8 md:p-12 overflow-hidden flex flex-col justify-between shadow-xl">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={currentItem.id}
@@ -121,7 +112,7 @@ export default function NewsSlider() {
                 <span className="font-body text-xs text-primary font-semibold uppercase tracking-wider bg-primary/20 px-3 py-1 border border-primary/40">
                   {currentItem.category}
                 </span>
-                <span className="font-body text-xs text-silver-leaf/80 uppercase">
+                <span className="font-body text-xs text-silver-leaf uppercase">
                   {currentItem.date}
                 </span>
               </div>
@@ -135,12 +126,12 @@ export default function NewsSlider() {
               </p>
 
               <div className="pt-4 flex flex-wrap items-center gap-4">
-                <Link href="/news">
+                <Link href={`/news/${currentItem.slug || currentItem.id}`}>
                   <Button variant="primary" icon={<ArrowRight className="w-4 h-4" />}>
                     Read Full News Dispatch
                   </Button>
                 </Link>
-                <span className="font-body text-xs text-silver-leaf/60 uppercase">
+                <span className="font-body text-xs text-silver-leaf/60 uppercase font-semibold">
                   Source: {currentItem.author || 'SOBOLDENTS EDITORIAL'}
                 </span>
               </div>
@@ -154,7 +145,7 @@ export default function NewsSlider() {
               <span className="font-display text-headline-sm text-primary uppercase tracking-widest mb-1">
                 SOBOLDENTS
               </span>
-              <span className="font-body text-xs text-silver-leaf/70 uppercase tracking-widest">
+              <span className="font-body text-xs text-silver-leaf/70 uppercase tracking-widest font-semibold">
                 VERIFIED MEDIA DESK
               </span>
             </div>
@@ -171,7 +162,7 @@ export default function NewsSlider() {
                   setDirection(idx > currentIndex ? 1 : -1);
                   setCurrentIndex(idx);
                 }}
-                className={`h-1.5 rounded-full transition-all duration-500 ${
+                className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${
                   idx === currentIndex ? 'w-8 bg-primary' : 'w-2 bg-surface-variant'
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}
