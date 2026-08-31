@@ -21,7 +21,7 @@ export default function Select({
     <div className="relative w-full">
       <label
         htmlFor={id}
-        className="block font-body text-label-caps text-silver-leaf uppercase tracking-[0.15em] mb-2"
+        className="block font-body text-label-caps text-silver-leaf uppercase tracking-[0.15em] mb-2 font-semibold"
       >
         {label}
       </label>
@@ -37,7 +37,7 @@ export default function Select({
             <option
               key={opt.value}
               value={opt.value}
-              className="bg-surface text-primary"
+              className="bg-surface-container-low text-primary"
             >
               {opt.label}
             </option>
