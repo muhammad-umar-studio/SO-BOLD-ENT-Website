@@ -97,7 +97,7 @@ export default function Navbar() {
                     href={link.href}
                     className={`relative py-1 transition-colors duration-300 ${
                       isActive
-                        ? 'text-primary'
+                        ? 'text-primary font-bold'
                         : 'text-silver-leaf hover:text-primary'
                     }`}
                   >
@@ -173,7 +173,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className={`fixed inset-0 z-30 bg-onyx-black/95 backdrop-blur-[30px] pt-32 px-margin-mobile flex flex-col justify-between pb-12 lg:hidden ${
+            className={`fixed inset-0 z-30 bg-background/98 backdrop-blur-[30px] pt-32 px-margin-mobile flex flex-col justify-between pb-12 lg:hidden border-b border-surface-variant ${
               isAdminRoute ? 'top-[54px]' : 'top-0'
             }`}
           >
@@ -189,7 +189,7 @@ export default function Navbar() {
                     key={link.name}
                     href={link.href}
                     className={`transition-colors ${
-                      isActive ? 'text-primary pl-2 border-l-2 border-primary' : 'text-silver-leaf'
+                      isActive ? 'text-primary font-bold pl-3 border-l-2 border-primary' : 'text-silver-leaf'
                     }`}
                   >
                     {link.name}
@@ -199,7 +199,7 @@ export default function Navbar() {
             </nav>
 
             <div className="border-t border-surface-variant pt-8 flex flex-col space-y-4">
-              <span className="font-body text-label-caps text-silver-leaf uppercase tracking-[0.2em]">
+              <span className="font-body text-label-caps text-silver-leaf uppercase tracking-[0.2em] font-bold">
                 Global Ecosystem &amp; Media
               </span>
               <p className="font-body text-body-sm text-silver-leaf">
