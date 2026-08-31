@@ -25,14 +25,14 @@ export default function ContactPage() {
 
   return (
     <div className="w-full relative pt-32 pb-section-gap min-h-screen">
-      {/* Background Atmosphere */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      {/* Dark Mode Studio Atmosphere */}
+      <div className="absolute inset-0 z-0 pointer-events-none hidden dark:block">
         <Image
           src="/images/products/studio_monitors.png"
           alt="Contact Background"
           fill
           priority
-          className="object-cover opacity-20 grayscale mix-blend-luminosity"
+          className="object-cover opacity-20 grayscale"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/60" />
       </div>
@@ -67,7 +67,7 @@ export default function ContactPage() {
         {/* Right Form Column */}
         <div className="md:col-span-7 flex items-center">
           <FadeIn direction="up" fullWidth>
-            <div className="w-full bg-surface-container-low backdrop-blur-md p-8 md:p-12 border border-surface-variant shadow-2xl">
+            <div className="w-full bg-surface-container-low p-8 md:p-12 border border-surface-variant shadow-xl">
               {formState.success ? (
                 <div className="py-12 flex flex-col items-center text-center space-y-6">
                   <CheckCircle2 className="w-16 h-16 text-primary animate-bounce" />
