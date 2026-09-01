@@ -3,11 +3,61 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { notFound, useParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { ArrowLeft, Newspaper, Calendar, User, Tag, Share2, Award } from 'lucide-react';
 import { useCmsStore } from '@/lib/store/cmsStore';
 import Button from '@/components/ui/Button';
 import FadeIn from '@/components/motion/FadeIn';
+
+function parseWordPressContent(html: string): string {
+  if (!html) return '';
+
+  let cleaned = html
+    // 1. Strip all WordPress Gutenberg comments
+    .replace(/<!--[\s\S]*?-->/g, '')
+    // 2. Fix broken HTML entity codes
+    .replace(/&#8217;/g, "'")
+    .replace(/&#8220;/g, '"')
+    .replace(/&#8221;/g, '"')
+    .replace(/&amp;/g, '&')
+    .trim();
+
+  // 3. Convert YouTube links into responsive iframe embeds
+  cleaned = cleaned.replace(
+    /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)(?:[\&\?][^\s<"]*)?/gi,
+    (match, videoId) => {
+      return `<div class="my-8 aspect-video w-full border border-surface-variant overflow-hidden bg-black shadow-2xl rounded-lg">
+        <iframe
+          src="https://www.youtube.com/embed/${videoId}"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          class="w-full h-full border-0"
+        ></iframe>
+      </div>`;
+    }
+  );
+
+  // 4. Convert Spotify links into responsive iframe embeds
+  cleaned = cleaned.replace(
+    /https?:\/\/open\.spotify\.com\/(intl-[a-z]+\/)?(album|track|artist)\/([a-zA-Z0-9]+)(\?[^\s<"]*)?/gi,
+    (match, intl, type, spotifyId) => {
+      return `<div class="my-8 w-full h-[152px] border border-surface-variant overflow-hidden rounded-xl bg-black">
+        <iframe
+          src="https://open.spotify.com/embed/${type}/${spotifyId}?utm_source=generator&theme=0"
+          width="100%"
+          height="152"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+          class="w-full h-full border-0"
+        ></iframe>
+      </div>`;
+    }
+  );
+
+  return cleaned;
+}
 
 export default function SingleNewsPage() {
   const params = useParams();
@@ -40,6 +90,8 @@ export default function SingleNewsPage() {
   const relatedDispatches = dispatches
     .filter((d) => d.id !== article.id)
     .slice(0, 3);
+
+  const parsedHtml = parseWordPressContent(article.content);
 
   return (
     <article className="w-full pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop min-h-screen">
@@ -94,34 +146,39 @@ export default function SingleNewsPage() {
           </div>
         </FadeIn>
 
-        {/* Featured Article Cover Image if available */}
+        {/* Featured Article Cover Image with Proper Aspect Ratio & No Cropping */}
         {article.imageUrl && (
           <FadeIn direction="up">
-            <div className="relative w-full aspect-[16/9] border border-surface-variant overflow-hidden shadow-2xl">
-              <Image
-                src={article.imageUrl}
-                alt={article.title}
-                fill
-                priority
-                className="object-cover"
-              />
+            <div className="w-full flex justify-center bg-surface-container-low border border-surface-variant rounded-lg p-2 md:p-4 overflow-hidden shadow-2xl">
+              <div className="relative w-full max-h-[550px] aspect-[16/9] md:aspect-[21/9]">
+                <Image
+                  src={article.imageUrl}
+                  alt={article.title}
+                  fill
+                  priority
+                  className="object-contain object-center"
+                />
+              </div>
             </div>
           </FadeIn>
         )}
 
-        {/* Main Article Body Text */}
+        {/* Main Article Body Rendered HTML with Live Video & Spotify Embeds */}
         <FadeIn direction="up">
-          <div className="prose prose-invert max-w-none space-y-6 text-primary font-body text-body-lg leading-relaxed pt-4 border-b border-surface-variant pb-12">
-            {article.content.split('\n\n').map((paragraph, index) => (
-              <p key={index} className="text-primary font-body leading-relaxed">
-                {paragraph}
-              </p>
-            ))}
+          <div
+            className="prose prose-invert max-w-none space-y-6 text-primary font-body text-body-lg leading-relaxed pt-4 border-b border-surface-variant pb-12
+              [&_p]:text-primary [&_p]:leading-relaxed [&_p]:mb-4
+              [&_a]:text-neon-gold [&_a]:underline [&_a]:font-semibold hover:[&_a]:text-primary
+              [&_strong]:text-primary [&_strong]:font-bold
+              [&_h2]:font-display [&_h2]:text-headline-md [&_h2]:text-primary [&_h2]:uppercase [&_h2]:mt-8 [&_h2]:mb-4
+              [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-silver-leaf
+              [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-lg [&_img]:mx-auto [&_img]:my-6 [&_img]:border [&_img]:border-surface-variant"
+            dangerouslySetInnerHTML={{ __html: parsedHtml }}
+          />
 
-            <p className="text-silver-leaf font-body text-body-md pt-6 border-t border-surface-variant/40">
-              Official Press Release issued by SOBOLDENTS Media Relations Division &amp; Communications Desk. All rights reserved.
-            </p>
-          </div>
+          <p className="text-silver-leaf font-body text-body-md pt-4">
+            Official Press Release issued by SOBOLDENTS Media Relations Division &amp; Communications Desk. All rights reserved.
+          </p>
         </FadeIn>
 
         {/* Bottom Related Dispatches Hub */}

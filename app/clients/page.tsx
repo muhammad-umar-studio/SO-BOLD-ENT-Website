@@ -73,14 +73,8 @@ export default function ClientsPage() {
         <AnimatePresence mode="popLayout">
           {filteredArtists.map((artist, index) => {
             // Assign responsive brutalist span classes
-            const defaultSpan =
-              index % 3 === 0
-                ? 'md:col-span-8 h-[65vh]'
-                : index % 3 === 1
-                ? 'md:col-span-4 h-[65vh]'
-                : 'md:col-span-6 h-[55vh]';
-
-            const spanClass = artist.spanClass || defaultSpan;
+            const spanClass = artist.spanClass || 'col-span-12 md:col-span-6';
+            const cardHeight = 'min-h-[480px] h-[55vh] md:h-[60vh]';
 
             return (
               <motion.div
@@ -90,7 +84,7 @@ export default function ClientsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.5, ease: [0.77, 0, 0.175, 1] }}
-                className={`relative border border-surface-variant bg-surface-container-low overflow-hidden group dark-overlay-card ${spanClass}`}
+                className={`relative border border-surface-variant bg-surface-container-low overflow-hidden group dark-overlay-card ${spanClass} ${cardHeight}`}
               >
                 <Link href={`/clients/${artist.slug}`} className="block w-full h-full relative">
                   {/* Background Image with Monochromatic Overlay */}

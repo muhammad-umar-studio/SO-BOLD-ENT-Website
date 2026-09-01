@@ -1,6 +1,6 @@
 {
   "name": "SO BOLD ENT",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --no-turbo",
@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "migrate:wp": "npx tsx scripts/migrate-wp.ts",
-    "sync:wp-local": "npx tsx scripts/sync-wp-local.ts"
+    "sync:wp-local": "npx tsx scripts/sync-wp-local.ts",
+    "import:wp-xml": "npx tsx scripts/import-wp-xml.ts",
+    "download:wp-media": "npx tsx scripts/download-wp-media.ts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",

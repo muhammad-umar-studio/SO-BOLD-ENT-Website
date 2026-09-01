@@ -3,7 +3,6 @@ import path from 'path';
 import { createClient } from '@sanity/client';
 import { JSDOM } from 'jsdom';
 import { htmlToBlocks } from '@sanity/block-tools';
-import { Schema } from '@sanity/schema';
 
 // ============================================================================
 // CONFIGURATION & ENV SETUP
@@ -26,27 +25,30 @@ const sanityClient = createClient({
   useCdn: false,
 });
 
-// Basic Default Schema for Portable Text Conversion
-const defaultSchema = Schema.compile({
-  name: 'default',
-  types: [
+// Fallback Portable Text Content Type Schema for HTML parsing
+const blockContentType = {
+  type: 'array',
+  name: 'body',
+  of: [
     {
-      type: 'object',
-      name: 'blogPost',
-      fields: [
-        {
-          title: 'Body',
-          name: 'body',
-          type: 'array',
-          of: [{ type: 'block' }],
-        },
+      type: 'block',
+      styles: [
+        { title: 'Normal', value: 'normal' },
+        { title: 'H1', value: 'h1' },
+        { title: 'H2', value: 'h2' },
+        { title: 'H3', value: 'h3' },
+        { title: 'Quote', value: 'blockquote' },
       ],
+      lists: [{ title: 'Bullet', value: 'bullet' }],
+      marks: {
+        decorators: [
+          { title: 'Strong', value: 'strong' },
+          { title: 'Emphasis', value: 'em' },
+        ],
+      },
     },
   ],
-});
-const blockContentType = defaultSchema
-  .get('blogPost')
-  .fields.find((field: any) => field.name === 'body').type;
+};
 
 // In-Memory & Persistent Media Mapping (wpMediaId -> sanityAssetId)
 let mediaMap: Record<number, string> = {};
@@ -97,7 +99,7 @@ async function fetchAllWPMedia(): Promise<any[]> {
   console.log('\n---------------------------------------------------------');
   console.log('📷 PHASE A: Fetching Media Library from WordPress REST API...');
   console.log('---------------------------------------------------------');
-  
+
   let page = 1;
   let allMedia: any[] = [];
   let totalPages = 1;
@@ -111,7 +113,7 @@ async function fetchAllWPMedia(): Promise<any[]> {
         if (res.status === 400) break; // Out of pages
         throw new Error(`HTTP error ${res.status}`);
       }
-      
+
       const totalPagesHeader = res.headers.get('x-wp-totalpages');
       if (totalPagesHeader) {
         totalPages = parseInt(totalPagesHeader, 10);
@@ -182,12 +184,11 @@ function convertHtmlToPortableText(htmlContent: string) {
   if (!htmlContent || typeof htmlContent !== 'string') return [];
 
   try {
-    const blocks = htmlToBlocks(htmlContent, blockContentType, {
+    const blocks = htmlToBlocks(htmlContent, blockContentType as any, {
       parseHtml: (html) => new JSDOM(html).window.document,
     });
     return blocks;
   } catch (err) {
-    console.warn('Fallback HTML block parsing used for post body content.');
     return [
       {
         _type: 'block',
@@ -275,7 +276,7 @@ async function migratePostsToDatabase(posts: any[]) {
       // Map to Document Schema
       const doc = {
         _id: `wp-post-${wpId}`,
-        _type: 'dispatch', // Matches Sanity / App Dispatch schema
+        _type: 'dispatch',
         title,
         slug: { _type: 'slug', current: slug },
         number: String(index).padStart(2, '0'),

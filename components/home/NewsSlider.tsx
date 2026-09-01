@@ -137,17 +137,28 @@ export default function NewsSlider() {
               </div>
             </div>
 
-            {/* Right Badge / Banner Graphic */}
-            <div className="md:col-span-4 hidden md:flex flex-col items-center justify-center p-6 border-l border-surface-variant/40 text-center">
-              <div className="w-16 h-16 rounded-full bg-surface-container border border-primary/40 flex items-center justify-center mb-4">
-                <Award className="w-8 h-8 text-primary" />
-              </div>
-              <span className="font-display text-headline-sm text-primary uppercase tracking-widest mb-1">
-                SOBOLDENTS
-              </span>
-              <span className="font-body text-xs text-silver-leaf uppercase tracking-widest font-semibold">
-                VERIFIED MEDIA DESK
-              </span>
+            {/* Right Cover Image or Badge */}
+            <div className="md:col-span-4 flex items-center justify-center border border-surface-variant/40 overflow-hidden bg-black/40 h-[220px] md:h-[260px] relative rounded-lg">
+              {currentItem.imageUrl ? (
+                <Image
+                  src={currentItem.imageUrl}
+                  alt={currentItem.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+              ) : (
+                <div className="flex flex-col items-center justify-center p-6 text-center">
+                  <div className="w-16 h-16 rounded-full bg-surface-container border border-primary/40 flex items-center justify-center mb-4">
+                    <Award className="w-8 h-8 text-primary" />
+                  </div>
+                  <span className="font-display text-headline-sm text-primary uppercase tracking-widest mb-1">
+                    SOBOLDENTS
+                  </span>
+                  <span className="font-body text-xs text-silver-leaf uppercase tracking-widest font-semibold">
+                    VERIFIED MEDIA DESK
+                  </span>
+                </div>
+              )}
             </div>
           </motion.div>
         </AnimatePresence>
